@@ -103,3 +103,7 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build
+      - uses: joabalea/App-Center-action@v1.0.2
+        with:
+          command: appcenter distribute stores publish -s Alpha -f build/Build-${{ matrix.targetPlatform }} -r releaseNote -a ElliotEserinST/cicd-test
+          token: ${{secrets.APP_CENTER_TOKEN}}
