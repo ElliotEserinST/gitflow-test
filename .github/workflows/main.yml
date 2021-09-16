@@ -78,7 +78,6 @@ jobs:
           key: Library-Android
       - uses: game-ci/unity-builder@v2
         with:
-          targetPlatform: Android
           androidAppBundle: true
           androidKeystoreName: user.keystore
           androidKeystoreBase64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
