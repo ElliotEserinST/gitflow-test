@@ -91,9 +91,9 @@ jobs:
           path: build/Android
 
   releaseToGooglePlay:
+    needs: buildForAndroidPlatform
     name: Release to the Google Play Store
     runs-on: ubuntu-latest
-    needs: buildForAndroidPlatform
     env:
       GOOGLE_PLAY_KEY_FILE: ${{ secrets.GOOGLE_PLAY_KEY_FILE }}
       GOOGLE_PLAY_KEY_FILE_PATH: ${{ format('{0}/fastlane/google-fastlane.json', github.workspace) }}
