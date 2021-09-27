@@ -101,3 +101,15 @@ jobs:
         with:
           name: build-Android
           path: build/Android
+          
+  publishToAppCenter:
+    name: App Center Distribute
+    runs-on: ubuntu-latest
+    steps:
+    - uses: devussy/AppCenter-Distribute-Github-Action@v1.0.5
+      with:
+        app:  SophiesGames/gitflow-test
+        token: ${{secrets.APP_CENTER_TOKEN}}
+        group: Collaborators
+        file: build/Android
+        silent: false
