@@ -89,7 +89,7 @@ jobs:
       - uses: game-ci/unity-builder@v2
         with:
           targetPlatform: Android
-          androidAppBundle: true
+          #androidAppBundle: true
           androidKeystoreName: user.keystore
           androidKeystoreBase64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           androidKeystorePass: ${{ secrets.ANDROID_KEYSTORE_PASS }}
@@ -106,7 +106,7 @@ jobs:
     name: App Center Distribute
     runs-on: ubuntu-latest
     steps:
-    - uses: devussy/AppCenter-Distribute-Github-Action@v1.0.5
+    - uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
       with:
         app:  SophiesGames/gitflow-test
         token: ${{secrets.APP_CENTER_TOKEN}}
