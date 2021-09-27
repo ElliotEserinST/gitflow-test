@@ -106,6 +106,12 @@ jobs:
     name: App Center Distribute
     runs-on: ubuntu-latest
     steps:
+    - name: Download Android Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: build-Android
+        path: build/Android
+        
     - uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
       with:
         app:  SophiesGames/gitflow-test
@@ -113,3 +119,9 @@ jobs:
         group: Collaborators
         file: build/Android
         silent: false
+        
+    - name: Cleanup to avoid storage limit
+      if: always()
+      uses: geekyeggo/delete-artifact@v1
+      with:
+        name: build-Android
