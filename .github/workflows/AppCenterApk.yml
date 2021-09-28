@@ -1,6 +1,9 @@
-name: GameCI Template 🎮
+name: Build APK and Release to App Center
 
-on: push
+on: 
+  push:
+    branches:
+      - main
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
