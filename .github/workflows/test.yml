@@ -117,7 +117,7 @@ jobs:
         app:  Sophies-Tech-Ltd./CICD-Test
         token: ${{secrets.APP_CENTER_TOKEN}}
         group: Collaborators
-        file: Android.apk
+        file: build/Android/Android.apk
         silent: false
         
     - name: Cleanup to avoid storage limit
