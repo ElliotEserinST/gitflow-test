@@ -1,0 +1,50 @@
+
+name: Build for iOS and Release to App Center
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  buildForiOSPlatform:
+    name: Build for iOS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-iOS
+      - uses: game-ci/unity-builder@v2
+        with:
+          targetPlatform: iOS
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build-iOS
+          path: build/iOS
+          
+  publishToAppCenter:
+    needs: buildForiOSPlatform
+    name: App Center Distribute
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Android Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: build-iOS
+        path: build/iOS
+        
+    - uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
+      with:
+        app:  Sophies-Tech-Ltd./CICD-Test-IOS
+        token: ${{secrets.APP_CENTER_TOKEN}}
+        group: Collaborators
+        file: build/iOS/Android.dmg
+        silent: false
+        
+    - name: Cleanup to avoid storage limit
+      if: always()
+      uses: geekyeggo/delete-artifact@v1
+      with:
+        name: build-Android
