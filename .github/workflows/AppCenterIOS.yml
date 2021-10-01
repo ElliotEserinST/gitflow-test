@@ -43,11 +43,11 @@ jobs:
         app:  Sophies-Tech-Ltd./CICD-Test-IOS
         token: ${{secrets.APP_CENTER_TOKEN}}
         group: Collaborators
-        file: build/iOS/Android.dmg
+        file: build/iOS/iOS.dmg
         silent: false
         
     - name: Cleanup to avoid storage limit
       if: always()
       uses: geekyeggo/delete-artifact@v1
       with:
-        name: build-Android
+        name: build-iOS
